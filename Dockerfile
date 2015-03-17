@@ -24,4 +24,4 @@ VOLUME ["/etc/icinga2", "/etc/icingaweb2", "/var/lib/mysql"]
 
 EXPOSE 80 443
 
-ENTRYPOINT ["/bin/start.sh"]
+ENTRYPOINT ["/sbin/start.sh"]
