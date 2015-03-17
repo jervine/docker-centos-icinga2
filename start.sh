@@ -3,6 +3,12 @@
 ## Start up script for Icinga2 on CentOS docker container
 ##
 
+## Initialise any variables being called:
+# Set the correct timezone for PHP
+PHP_TZ=${TZ:-UTC}
+PHP_TZ_CONT=`echo $PHP_TZ | awk 'BEGIN { FS="/" } { print $1 }'`
+PHP_TZ_CITY=`echo $PHP_TZ | awk 'BEGIN { FS="/" } { print $2 }'`
+
 ## Set up the correct ownership of any directories imported into the container from the host
 chown -R mysql:mysql /var/lib/mysql
 chown -R icinga:icinga /etc/icinga2
@@ -32,9 +38,10 @@ if [[ -L /etc/icinga2/features-enabled/livestatus.conf ]]; then echo "Symlink fo
 
 # Start up the mariadb instance:
 mysqld_safe --basedir=/usr --nowatch
+sleep 5
 
 # Make sure that NOBODY can access the server without a password - to be updated with a variable for a password ***
-mysql -e "UPDATE mysql.user SET Password = PASSWORD('CHANGEME') WHERE User = 'root'"
+#mysql -e "UPDATE mysql.user SET Password = PASSWORD('CHANGEME') WHERE User = 'root'"
 
 # Kill the anonymous users
 mysql -e "DROP USER ''@'localhost'"
@@ -69,7 +76,15 @@ else
   ./bin/icingacli setup token create
 fi
 
+# Configure the PHP timezone correctly:
+if [ "$PHP_TZ_CITY" = "" ]; then
+  sed -i "s/;date.timezone =/date.timezone = ${PHP_TZ_CONT}/" /etc/php.ini
+else
+  sed -i "s/;date.timezone =/date.timezone = ${PHP_TZ_CONT}\/${PHP_TZ_CITY}/" /etc/php.ini
+fi
+
 
 ## Start up icinga2 and apache web server daemons (maybe to be replaced with supervisor at some point)
+/usr/sbin/httpd -k start >> /tmp/web-start.log
 /usr/sbin/icinga2 daemon -d -e /var/log/icinga2/error.log
-/usr/sbin/httpd -k start
+
