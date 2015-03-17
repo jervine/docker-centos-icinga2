@@ -7,6 +7,6 @@ docker run -d -e TZ="Europe/London" -p 80:80 -p 443:443 jervine/docker-centos-ic
 
 Optionally, the /etc/icinga2, /etc/icingaweb2, and /var/lib/mysql directories can be mapped from a local filesystem with the -v argument.
 
-When first spun up, the web interface can be configured via http://<docker host>/icinga2web/setup - you will need the token that was created during initialisation, and this can be found by looking at the container logs:
+When first spun up, the web interface can be configured via http://\<docker host\>/icinga2web/setup - you will need the token that was created during initialisation, and this can be found by looking at the container logs:
 
-docker logs <container name> | grep token
+docker logs \<container name\> | grep token
