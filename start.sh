@@ -38,7 +38,7 @@ if [[ -L /etc/icinga2/features-enabled/livestatus.conf ]]; then echo "Symlink fo
 
 # Start up the mariadb instance:
 mysqld_safe --basedir=/usr --nowatch
-sleep 5
+sleep 10
 
 # Make sure that NOBODY can access the server without a password - to be updated with a variable for a password ***
 #mysql -e "UPDATE mysql.user SET Password = PASSWORD('CHANGEME') WHERE User = 'root'"
@@ -65,7 +65,8 @@ mysql -f icinga < /usr/share/icinga2-ido-mysql/schema/mysql.sql
 mysql -e "FLUSH PRIVILEGES"
 
 # Any subsequent tries to run queries this way will get access denied because lack of usr/pwd param
-
+# Stop the MariaDB, as it will be controlled via supervisord
+kill `pgrep mysqld`
 
 ## Initialising the icingaweb2 configuration
 if [[ -L /etc/icingaweb2 ]];
@@ -84,7 +85,5 @@ else
 fi
 
 
-## Start up icinga2 and apache web server daemons (maybe to be replaced with supervisor at some point)
-/usr/sbin/httpd -k start >> /tmp/web-start.log
-/usr/sbin/icinga2 daemon -d -e /var/log/icinga2/error.log
-
+## Start up icinga2 and apache web server daemons via supervisord
+/usr/bin/supervisord -n -C /etc/supervisord.conf
