@@ -112,4 +112,4 @@ fi
 
 
 ## Start up icinga2 and apache web server daemons via supervisord
-/usr/bin/supervisord -n -C /etc/supervisord.conf
+/usr/bin/supervisord -n -c /etc/supervisord.conf
