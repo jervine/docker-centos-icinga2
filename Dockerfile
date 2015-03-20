@@ -31,7 +31,7 @@ RUN mv /etc/icinga2/conf.d/services.conf /etc/icinga2/conf.d/services.conf.orig
 ADD hosts.conf /etc/icinga2/conf.d/hosts.conf
 ADD services.conf /etc/icinga2/conf.d/services.conf
 
-VOLUME ["/etc/icinga2", "/etc/icingaweb2", "/var/lib/mysql"]
+VOLUME ["/etc/icinga2", "/etc/icingaweb2", "/var/lib/mysql", "/var/lib/icinga2"]
 
 EXPOSE 80 443 5665 9001
 
