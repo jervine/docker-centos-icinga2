@@ -33,6 +33,6 @@ ADD services.conf /etc/icinga2/conf.d/services.conf
 
 VOLUME ["/etc/icinga2", "/etc/icingaweb2", "/var/lib/mysql"]
 
-EXPOSE 80 443 9001
+EXPOSE 80 443 5665 9001
 
 ENTRYPOINT ["/sbin/start.sh"]
