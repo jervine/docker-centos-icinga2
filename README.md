@@ -7,7 +7,7 @@ This docker image creates a latest CentOS dokcer contianer runinng Apache2, Mari
 
 The container requires some extra (non-default) capabilities added. These are added so that the icinga user can use the ping command which is used to check that hosts are up. The port 9001 is used for the supervisor daemon. This can be disabled if needs be. The Dockerfile removes and re-adds the iputils package. Again, this is to ensure that the icinga user can use ping correctly. 
 
-Optionally, the /etc/icinga2, /etc/icingaweb2, and /var/lib/mysql directories can be mapped from a local filesystem with the -v argument.
+Optionally, the /etc/icinga2, /etc/icingaweb2, and /var/lib/mysql, and /var/lib/icinga2 directories can be mapped from a local filesystem with the -v argument.
 
 When first spun up, the web interface can be configured via http://\<docker host\>/icinga2web/setup - you will need the token that was created during initialisation, and this can be found by looking at the container logs:
 
