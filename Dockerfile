@@ -2,7 +2,7 @@ FROM centos:latest
 MAINTAINER Jonathan Ervine <jon.ervine@gmail.com>
 
 RUN yum update -y &&  yum clean all
-RUN yum install -y http://mirror.pnl.gov/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+RUN yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 RUN rpm --import http://packages.icinga.org/icinga.key
 RUN curl http://packages.icinga.org/epel/ICINGA-release.repo > /etc/yum.repos.d/ICINGA-release.repo
 RUN rpm -e --nodeps iputils
