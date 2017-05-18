@@ -1,7 +1,7 @@
 # docker-centos-icinga2
 ## Icinga2 and Icinga2 web on CentOS docker image
 
-This docker image creates a latest CentOS dokcer contianer runinng Apache2, MariaBD, and Icinga2 with Icinga Web 2. You should supply an environment variable 'TZ' when the container is first run to set the correct timezone in /etc/php.ini - otherwise a default timezone of UTC is used:
+This docker image creates a latest CentOS docker container runinng Apache2, MariaBD, and Icinga2 with Icinga Web 2. You should supply an environment variable 'TZ' when the container is first run to set the correct timezone in /etc/php.ini - otherwise a default timezone of UTC is used:
 
     docker run -d --cap-add net_raw --cap-add net_admin -e TZ="Europe/London" -p 80:80 -p 443:443 -p 9001:9001 jervine/docker-centos-icinga2
 
