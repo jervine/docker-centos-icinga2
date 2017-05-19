@@ -106,7 +106,7 @@ if [ ! -f "${setup}" ]; then
     sed -i "s/;date.timezone =/date.timezone = ${PHP_TZ_CONT}\/${PHP_TZ_CITY}/" /etc/php.ini
   fi
 
-  Mark the setup as complete
+# Mark the setup as complete
   touch /etc/icinga2/.setup
 fi
 
