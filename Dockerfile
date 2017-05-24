@@ -14,9 +14,8 @@ RUN yum install -y icinga2 nagios-plugins-all git mariadb-server icinga2-ido-mys
 RUN /usr/libexec/mariadb-prepare-db-dir
 RUN /usr/lib/icinga2/prepare-dirs /etc/sysconfig/icinga2
 RUN usermod -a -G icingacmd apache
-RUN git clone https://github.com/Icinga/icingaweb2.git
-RUN mv icingaweb2 /usr/share/icingaweb2
-RUN cd /usr/share/icingaweb2; ./bin/icingacli setup config webserver apache --document-root /usr/share/icingaweb2/public > /etc/httpd/conf.d/icingaweb2.conf
+RUN yum install -y icingaweb2 icingacli
+RUN icingacli setup config webserver apache --document-root /usr/share/icingaweb2/public > /etc/httpd/conf.d/icingaweb2.conf
 RUN groupadd -r icingaweb2
 RUN usermod -a -G icingaweb2 apache
 
