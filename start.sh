@@ -10,12 +10,6 @@ PHP_TZ_CONT=`echo $PHP_TZ | awk 'BEGIN { FS="/" } { print $1 }'`
 PHP_TZ_CITY=`echo $PHP_TZ | awk 'BEGIN { FS="/" } { print $2 }'`
 setup=/config/.setup
 
-## Set up the correct ownership of any directories imported into the container from the host
-chown -R mysql:mysql /var/lib/mysql
-chown -R icinga:icinga /etc/icinga2
-chown -R apache:icingaweb2 /etc/icingaweb2
-chown root:icingaweb2 /etc/icingaweb2
-
 ## The remaining initialisation is contained in an if condition. When the initialisation completes an empty /etc/icinga2/.setup file is created. If this exists the initialisation is skipped. By deleting this file, the initialisation can be restarted.
 if [ ! -f "${setup}" ]; then
 
@@ -91,13 +85,13 @@ if [ ! -f "${setup}" ]; then
 
 
   ## Initialising the icingaweb2 configuration
-  if [[ -L /etc/icingaweb2 ]]; then
-    echo "Icinga2 web configuration directory already exists...skipping"
-  else
-    cd /usr/share/icingaweb2
-    icingacli setup config directory
-    icingacli setup token create
-  fi
+#  if [[ -L /etc/icingaweb2 ]]; then
+#    echo "Icinga2 web configuration directory already exists...skipping"
+#  else
+#    cd /usr/share/icingaweb2
+#    icingacli setup config directory
+#    icingacli setup token create
+#  fi
 
   # Configure the PHP timezone correctly:
   if [ "$PHP_TZ_CITY" = "" ]; then
@@ -107,7 +101,7 @@ if [ ! -f "${setup}" ]; then
   fi
 
 # Mark the setup as complete
-  touch /etc/icinga2/.setup
+  touch /config/.setup
 fi
 
 
