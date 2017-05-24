@@ -8,7 +8,7 @@
 PHP_TZ=${TZ:-UTC}
 PHP_TZ_CONT=`echo $PHP_TZ | awk 'BEGIN { FS="/" } { print $1 }'`
 PHP_TZ_CITY=`echo $PHP_TZ | awk 'BEGIN { FS="/" } { print $2 }'`
-setup=/etc/icinga2/.setup
+setup=/config/.setup
 
 ## Set up the correct ownership of any directories imported into the container from the host
 chown -R mysql:mysql /var/lib/mysql
