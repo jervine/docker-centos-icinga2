@@ -15,9 +15,7 @@ RUN /usr/libexec/mariadb-prepare-db-dir
 RUN /usr/lib/icinga2/prepare-dirs /etc/sysconfig/icinga2
 RUN usermod -a -G icingacmd apache
 RUN yum install -y icingaweb2 icingacli
-RUN icingacli setup config webserver apache --document-root /usr/share/icingaweb2/public > /etc/httpd/conf.d/icingaweb2.conf
-RUN groupadd -r icingaweb2
-RUN usermod -a -G icingaweb2 apache
+##RUN icingacli setup config webserver apache --document-root /usr/share/icingaweb2/public > /etc/httpd/conf.d/icingaweb2.conf
 
 ADD start.sh /sbin/start.sh
 RUN chmod 755 /sbin/start.sh
