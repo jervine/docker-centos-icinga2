@@ -95,8 +95,8 @@ if [ ! -f "${setup}" ]; then
     echo "Icinga2 web configuration directory already exists...skipping"
   else
     cd /usr/share/icingaweb2
-    ./bin/icingacli setup config directory
-    ./bin/icingacli setup token create
+    icingacli setup config directory
+    icingacli setup token create
   fi
 
   # Configure the PHP timezone correctly:
