@@ -9,7 +9,7 @@ RUN rpm -e --nodeps iputils
 RUN yum install -y iputils
 RUN yum makecache
 
-RUN yum install -y icinga2 nagios-plugins-all git mariadb-server icinga2-ido-mysql httpd php php-intl php-theseer-fDOMDocument php-gd php-pecl-imagick php-pdo php-ZendFramework-Db-Adapter-Pdo-Mysql supervisor
+RUN yum install -y centos-release-scl icinga2 nagios-plugins-all git mariadb-server icinga2-ido-mysql httpd php php-intl php-theseer-fDOMDocument php-gd php-pecl-imagick php-pdo php-ZendFramework-Db-Adapter-Pdo-Mysql supervisor
 
 RUN /usr/libexec/mariadb-prepare-db-dir
 RUN /usr/lib/icinga2/prepare-dirs /etc/sysconfig/icinga2
