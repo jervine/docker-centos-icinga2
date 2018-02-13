@@ -9,6 +9,8 @@ RUN rpm -e --nodeps iputils
 RUN yum install -y iputils
 RUN yum makecache
 
+VOLUME ["/etc/icinga2", "/etc/icingaweb2", "/var/lib/mysql", "/var/lib/icinga2"]
+
 RUN yum install -y centos-release-scl icinga2 nagios-plugins-all git mariadb-server icinga2-ido-mysql httpd php php-intl php-theseer-fDOMDocument php-gd php-pecl-imagick php-pdo php-ZendFramework-Db-Adapter-Pdo-Mysql supervisor
 
 RUN /usr/libexec/mariadb-prepare-db-dir
@@ -27,8 +29,6 @@ RUN mv /etc/icinga2/conf.d/hosts.conf /etc/icinga2/conf.d/hosts.conf.orig
 RUN mv /etc/icinga2/conf.d/services.conf /etc/icinga2/conf.d/services.conf.orig
 ADD hosts.conf /etc/icinga2/conf.d/hosts.conf
 ADD services.conf /etc/icinga2/conf.d/services.conf
-
-VOLUME ["/etc/icinga2", "/etc/icingaweb2", "/var/lib/mysql", "/var/lib/icinga2"]
 
 EXPOSE 80 443 5665 9001
 
