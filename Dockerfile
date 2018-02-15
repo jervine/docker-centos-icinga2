@@ -24,6 +24,7 @@ RUN chmod 755 /sbin/start.sh
 ADD apache.ini /etc/supervisord.d/apache.ini
 ADD mariadb.ini /etc/supervisord.d/mariadb.ini
 ADD icinga2.ini /etc/supervisord.d/icinga2.ini
+ADD php-fm.ini /etc/supervisord.d/php-fm.ini
 ADD supervisord.conf /etc/supervisord.conf
 RUN mv /etc/icinga2/conf.d/hosts.conf /etc/icinga2/conf.d/hosts.conf.orig
 RUN mv /etc/icinga2/conf.d/services.conf /etc/icinga2/conf.d/services.conf.orig
