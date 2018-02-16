@@ -26,10 +26,10 @@ ADD mariadb.ini /etc/supervisord.d/mariadb.ini
 ADD icinga2.ini /etc/supervisord.d/icinga2.ini
 ADD php-fm.ini /etc/supervisord.d/php-fm.ini
 ADD supervisord.conf /etc/supervisord.conf
-RUN mv /etc/icinga2/conf.d/hosts.conf /etc/icinga2/conf.d/hosts.conf.orig
-RUN mv /etc/icinga2/conf.d/services.conf /etc/icinga2/conf.d/services.conf.orig
-ADD hosts.conf /etc/icinga2/conf.d/hosts.conf
-ADD services.conf /etc/icinga2/conf.d/services.conf
+#RUN mv /etc/icinga2/conf.d/hosts.conf /etc/icinga2/conf.d/hosts.conf.orig
+#RUN mv /etc/icinga2/conf.d/services.conf /etc/icinga2/conf.d/services.conf.orig
+#ADD hosts.conf /etc/icinga2/conf.d/hosts.conf
+#ADD services.conf /etc/icinga2/conf.d/services.conf
 
 EXPOSE 80 443 5665 9001
 
